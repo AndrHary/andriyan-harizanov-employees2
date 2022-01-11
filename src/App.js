@@ -1,21 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useState } from 'react'
+import { Grid } from 'gridjs-react'
+import changeHandler from './changeHandler'
 import './style.css'
 function App() {
-    const [days, setDays] = useState(0)
+    let [tandemArr, setTandemArr] = useState([])
+    console.log(tandemArr)
     return (
         <section id="home">
-            <div class="title-box">
+            <div className="title-box">
                 <h1>Tandems</h1>
                 <h2>Find the pair of employees who have worked as tandem for the longest amount of time.</h2>
             </div>
-            <div class="file-selection">
+            <div className="file-selection">
                 <h3>Choose file from here </h3>
-                <div class="input-container">
-                    <label for="files"><i class="fas fa-folder-plus"></i></label>
-                    <input type="file" id="fileInput" name="files" />
+                <div className="input-container">
+                    <label htmlFor="files"><i className="fas fa-folder-plus"></i></label>
+                    <input type="file" id="fileInput" name="files" onChange={(e) => changeHandler(e, setTandemArr)} />
                 </div>
             </div>
             <div id="wrapper"></div>
+            {tandemArr !== []
+                ? <Grid data={[tandemArr]} columns={['Employee1', 'Employee2', 'ProjectId', 'DaysAsTandem']} />
+                : null}
         </section>
     )
 }
