@@ -20,7 +20,7 @@ function App() {
                 </div>
             </div>
             <div id="wrapper"></div>
-            {tandemArr !== []
+            {tandemArr[0]
                 ? <Grid data={[tandemArr]} columns={['Employee1', 'Employee2', 'ProjectId', 'DaysAsTandem']} />
                 : null}
         </section>
