@@ -5,7 +5,7 @@ import changeHandler from './changeHandler'
 import './style.css'
 function App() {
     let [tandemArr, setTandemArr] = useState([])
-    console.log(tandemArr)
+    let [hint, setHint] = useState(false)
     return (
         <section id="home">
             <div className="title-box">
@@ -22,6 +22,14 @@ function App() {
             <div id="wrapper"></div>
             {tandemArr[0]
                 ? <Grid data={[tandemArr]} columns={['Employee1', 'Employee2', 'ProjectId', 'DaysAsTandem']} />
+                : null}
+            <div className='star'
+                onMouseEnter={() => setHint(true)}
+                onMouseOut={() => setHint(false)}><i class="fas fa-star-half-alt"></i></div>
+            {hint !== false
+                ? <div className='hint'>
+                    <p>To break the record the tandem must have worked more days then the current record holder. If the days are equal or less, the current record holder tandem stays on the top place. The job leaving day is not count as a worked day.</p>
+                </div>
                 : null}
         </section>
     )
